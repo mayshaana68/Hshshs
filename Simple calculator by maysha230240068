@@ -1,0 +1,47 @@
+public class Calculator extends javax.swing.JFrame {
+    
+    double num1, num2, result;
+    String operator;
+    
+    public Calculator() {
+        initComponents();
+    }
+    
+    private void numButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        ti.setText(ti.getText() + ((javax.swing.JButton) evt.getSource()).getText());
+    }
+
+    private void operatorActionPerformed(java.awt.event.ActionEvent evt) {
+        num1 = Double.parseDouble(ti.getText());
+        ti.setText("");
+        operator = ((javax.swing.JButton) evt.getSource()).getText();
+    }
+
+    private void bequalActionPerformed(java.awt.event.ActionEvent evt) {
+        num2 = Double.parseDouble(ti.getText());
+        switch (operator) {
+            case "+": result = num1 + num2; break;
+            case "-": result = num1 - num2; break;
+            case "*": result = num1 * num2; break;
+            case "/": result = (num2 != 0) ? num1 / num2 : 0; break;
+        }
+        tl.setText(String.valueOf(result));
+    }
+
+    public static void main(String args[]) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Calculator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+        java.awt.EventQueue.invokeLater(() -> {
+            new Calculator().setVisible(true);
+        });
+    }
+}
